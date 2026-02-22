@@ -5,6 +5,9 @@
   var params = new URLSearchParams(window.location.search);
   var funnel = params.get('utm_source') || 'direct';
 
+  // Clarity 유입경로 태그 (세그먼트 → Custom tags에서 funnel별 필터 가능)
+  if (typeof window.clarity === 'function') window.clarity('set', 'funnel', funnel);
+
   // Notion iframe
   var frame = document.getElementById('notion-frame');
   if (frame && typeof NOTION_PAGE_URL !== 'undefined') {
@@ -37,19 +40,21 @@
     window.gtag = gtag;
     gtag('js', new Date());
     gtag('config', gaId, { funnel: funnel });
+  }
 
-    // 카카오 버튼 클릭: 퍼널별 카카오 클릭 분석
-    if (ctaLink) {
-      ctaLink.addEventListener('click', function () {
-        gtag('event', 'click_cta', { cta_type: 'kakao', funnel: funnel });
-      });
-    }
+  // 카카오 버튼 클릭: GA 이벤트 + Clarity 커스텀 태그 (세션 세그먼트용)
+  if (ctaLink) {
+    ctaLink.addEventListener('click', function () {
+      if (gaId) gtag('event', 'click_cta', { cta_type: 'kakao', funnel: funnel });
+      if (typeof window.clarity === 'function') window.clarity('set', 'cta', 'kakao');
+    });
+  }
 
-    // 인스타 버튼 클릭: 퍼널별 인스타 클릭 분석
-    if (instagramLink) {
-      instagramLink.addEventListener('click', function () {
-        gtag('event', 'click_cta', { cta_type: 'instagram', funnel: funnel });
-      });
-    }
+  // 인스타 버튼 클릭: GA 이벤트 + Clarity 커스텀 태그
+  if (instagramLink) {
+    instagramLink.addEventListener('click', function () {
+      if (gaId) gtag('event', 'click_cta', { cta_type: 'instagram', funnel: funnel });
+      if (typeof window.clarity === 'function') window.clarity('set', 'cta', 'instagram');
+    });
   }
 })();
