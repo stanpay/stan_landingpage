@@ -9,6 +9,9 @@ const NOTION_PAGE_URL = 'https://boiling-reason-ced.notion.site/ebd//30ef7f6d92c
 // 카카오톡 친구추가 링크 (카카오 비즈니스 채널에서 발급)
 const KAKAO_FRIEND_URL = 'http://pf.kakao.com/_cxhRzX';
 
+// 인스타그램 프로필 링크
+const INSTAGRAM_URL = 'https://www.instagram.com/stan_assistant';
+
 // 퍼널(첫 번째 경로 세그먼트) → GA4 Measurement ID
 // stan.ai.kr/insta → "insta", stan.ai.kr/everytime → "everytime"
 const FUNNEL_TO_GA_ID = {

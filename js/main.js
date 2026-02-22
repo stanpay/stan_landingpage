@@ -16,6 +16,11 @@
     ctaLink.href = KAKAO_FRIEND_URL;
   }
 
+  var instagramLink = document.getElementById('instagram-link');
+  if (instagramLink && typeof INSTAGRAM_URL !== 'undefined') {
+    instagramLink.href = INSTAGRAM_URL;
+  }
+
   // 퍼널별 GA4
   var gaId = typeof FUNNEL_TO_GA_ID !== 'undefined' && FUNNEL_TO_GA_ID[segment];
   if (!gaId && typeof FUNNEL_TO_GA_ID !== 'undefined') {
