@@ -23,14 +23,13 @@ body {
   --cta-height: 64px;
 }
 
-/* iframe 영역: CTA 높이 + safe-area 제외 */
+/* iframe 영역: footer까지 전체 차지 (푸터는 fixed로 위에 겹침) */
 .notion-wrap {
   width: 100%;
   min-height: 0;
   display: block;
-  /* 모바일: 동적 뷰포트에서 CTA·safe-area 제외 (dvh = 주소창 숨김 시 높이) */
-  height: calc(100vh - var(--cta-height) - env(safe-area-inset-bottom, 0px));
-  height: calc(100dvh - var(--cta-height) - env(safe-area-inset-bottom, 0px));
+  height: 100vh;
+  height: 100dvh;
 }
 
 .notion-wrap iframe {
@@ -147,12 +146,12 @@ body {
   }
 }
 
-/* 데스크탑: iframe 전체 가로, CTA만 최대 너비 제한 */
+/* 데스크탑: iframe 전체 가로, footer까지 전체 높이 */
 @media (min-width: 768px) {
   .notion-wrap {
     width: 100%;
-    height: calc(100vh - var(--cta-height) - env(safe-area-inset-bottom, 0px));
-    height: calc(100dvh - var(--cta-height) - env(safe-area-inset-bottom, 0px));
+    height: 100vh;
+    height: 100dvh;
   }
 
   .cta-bar {
