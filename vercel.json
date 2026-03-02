@@ -2,7 +2,8 @@
   "rewrites": [
     { "source": "/app", "destination": "/app/index.html" },
     { "source": "/app/:path*", "destination": "/app/:path*" },
-    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/privacy", "destination": "/app/privacy.html" },
+    { "source": "/privacy/", "destination": "/app/privacy.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
