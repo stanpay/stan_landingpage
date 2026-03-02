@@ -1,0 +1,8 @@
+{
+  "name": "stan-landingpage",
+  "private": true,
+  "scripts": {
+    "build": "cd landing-react && npm ci && npm run build",
+    "dev:react": "cd landing-react && npm run dev"
+  }
+}

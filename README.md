@@ -36,15 +36,36 @@ npx serve .
    - **Netlify**: 프로젝트 루트의 `_redirects` 파일이 자동 적용됩니다 (`/* /index.html 200`).
    - **Vercel**: `vercel.json`의 `rewrites`가 자동 적용됩니다.
 
+## React 랜딩 (신규) — `/app`
+
+- **경로**: 배포 시 `https://<도메인>/app` 에서 확인.
+- **로컬 개발**: `npm run dev:react` 후 `http://localhost:5173/app` (또는 루트 `/`).
+- **빌드**: 루트에서 `npm run build` → `app/` 폴더 생성. Vercel 배포 시 Build Command를 `npm run build`로 두면 배포 시 자동 빌드됨.
+
+### 임시 API (Vercel Serverless)
+
+| 메서드 | 경로 | 설명 |
+|--------|------|------|
+| GET | `/api/health` | 헬스체크 (ok, service, timestamp) |
+| POST | `/api/notify` | 출시 알림 수집 (body: `{ email?, source? }`) — 임시로 저장 없이 200만 반환 |
+
 ## 구조
 
 ```
-├── index.html      # 단일 랜딩 페이지
-├── css/style.css   # 레이아웃·CTA·iframe 스타일
+├── index.html      # 기존 단일 랜딩 페이지
+├── css/style.css
 ├── js/
-│   ├── config.js   # Notion URL, 카카오 링크, 퍼널→GA ID 매핑
-│   └── main.js     # iframe/CTA 설정, 경로 기반 GA 로드
-├── _redirects      # Netlify SPA 리라이트
-├── vercel.json     # Vercel rewrites
+│   ├── config.js
+│   └── main.js
+├── landing-react/  # React 랜딩 (Vite)
+│   ├── src/
+│   └── package.json
+├── api/            # 임시 서버리스 API (Vercel)
+│   ├── health.js
+│   └── notify.js
+├── app/            # React 빌드 결과 (npm run build 시 생성, .gitignore)
+├── _redirects
+├── vercel.json
+├── package.json    # 루트 빌드 스크립트
 └── README.md
 ```
