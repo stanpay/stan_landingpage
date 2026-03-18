@@ -1,8 +1,8 @@
 {
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/app", "destination": "/app/index.html" },
-    { "source": "/app/:path*", "destination": "/app/:path*" },
+    { "source": "/app", "destination": "/404.html" },
+    { "source": "/app/:path*", "destination": "/404.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/privacy/", "destination": "/privacy.html" },
     { "source": "/(.*)", "destination": "/index.html" }
